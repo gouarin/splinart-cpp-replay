@@ -1,4 +1,0 @@
-# The Windows runners of GitHub Actions ship Visual Studio 2026.
-cxx_compiler:
-  - if: win
-    then: vs2026
