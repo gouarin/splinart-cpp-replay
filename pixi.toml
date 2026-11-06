@@ -35,7 +35,6 @@ breathe = "4.35.0.*"
 myst-parser = "2.0.0.*"
 cppcheck = ">=2.6.2,<2.14"
 clang = "==15.0.7"
-rattler-build = ">=0.80.0,<0.81"
 
 [pypi-dependencies]
 compdb = ">=0.2.0, <0.3"

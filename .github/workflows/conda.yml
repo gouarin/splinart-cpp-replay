@@ -23,16 +23,18 @@ jobs:
             - uses: prefix-dev/setup-pixi@v0.11.3
               with:
                   pixi-version: v0.84.1
-                  cache: true
+                  run-install: false
+
+            - name: Read the version
+              shell: bash
+              run: echo "VERSION=$(cat version.txt)" >> "$GITHUB_ENV"
 
             - name: Build the package
-              shell: bash
-              run: |
-                  VERSION=$(cat version.txt) pixi run rattler-build build --recipe recipe --output-dir output
+              run: pixi exec rattler-build build --recipe recipe --output-dir output
 
             - name: Upload on anaconda.org
               if: github.event_name == 'release'
               shell: bash
               env:
                   ANACONDA_API_KEY: ${{ secrets.ANACONDA_TOKEN }}
-              run: pixi run rattler-build upload anaconda --owner gouarin output/*/splinart-cpp-*.conda
+              run: pixi exec rattler-build upload anaconda --owner gouarin output/*/splinart-cpp-*.conda
