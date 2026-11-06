@@ -47,6 +47,6 @@ int main(int argc,
         }
     }
     auto img = splinart::build_img({img_size, img_size}, circles, nb_samples);
-    splinart::imshow(img);
+    splinart ::imshow(img);
     return 0;
 }
