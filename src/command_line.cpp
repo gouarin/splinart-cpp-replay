@@ -5,8 +5,8 @@
 #include <ctime>
 #include <fstream>
 
-#include <xtensor/xmath.hpp>
-#include <xtensor/xtensor.hpp>
+#include <xtensor/containers/xtensor.hpp>
+#include <xtensor/core/xmath.hpp>
 
 #include <CLI/CLI.hpp>
 #include <splinart/build_img.hpp>
@@ -23,7 +23,7 @@ int main(int argc,
     std::size_t nb_circles = 1;
     std::size_t nb_samples = 10000;
     bool has_random_color  = false;
-    xt::random::seed(time(nullptr));
+    xt::random::seed(time(NULL));
     CLI::App app{"splinart-cpp"};
     app.add_option("--img-size", img_size, "The size of the square image in pixels")->capture_default_str();
     app.add_option("--nb-circles", nb_circles, "The number of circles")->capture_default_str();
@@ -36,7 +36,7 @@ int main(int argc,
     std::vector<splinart::Circle> circles;
     for (std::size_t i = 0; i < nb_circles; i++)
     {
-        circles.emplace_back(xt::view(rand_centers, i), xt::view(rand_radius, i)[0], 75);
+        circles.push_back(splinart::Circle{xt::view(rand_centers, i), xt::view(rand_radius, i)[0], 75});
     }
     if (has_random_color)
     {

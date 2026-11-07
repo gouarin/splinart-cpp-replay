@@ -2,8 +2,6 @@ name: "Run CI"
 
 on:
     pull_request:
-        paths-ignore:
-            - "doc/**"
 
 jobs:
     pre-commit:

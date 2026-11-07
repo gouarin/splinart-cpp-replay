@@ -4,12 +4,12 @@
 #include <gtest/gtest.h>
 #include <splinart/shapes.hpp>
 #include <splinart/spline.hpp>
-#include <xtensor/xio.hpp>
+#include <xtensor/io/xio.hpp>
 
 struct CircleParam
 {
     xt::xtensor<double, 1> center;
-    double radius;
+    double radius{};
 };
 
 class SplineTest : public testing::TestWithParam<std::tuple<CircleParam, std::size_t>>
@@ -28,7 +28,7 @@ TEST_P(SplineTest, spline)
 
     auto y2s   = splinart::spline(circle.theta, circle.path);
     auto y_new = xt::zeros_like(circle.path);
-    splinart::splint(circle.theta, circle.path, y2s, circle.theta, y_new);
+    splinart::SplinT(circle.theta, circle.path, y2s, circle.theta, y_new);
 
     EXPECT_EQ(circle.path, y_new);
 }
