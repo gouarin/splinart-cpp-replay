@@ -6,12 +6,12 @@
 ```
 
 ```{eval-rst}
-.. doxygenfunction:: splinart::update_path
+.. doxygenfunction:: splinart::updatePATH
    :project: splinart
 ```
 
 ```{eval-rst}
-.. doxygenfunction:: splinart::draw_pixel
+.. doxygenfunction:: splinart::drawPiXel
    :project: splinart
 ```
 
