@@ -9,9 +9,9 @@ on:
             - main
     workflow_dispatch:
 
-# Allow one concurrent deployment
+# One run at a time per branch: a new push cancels the previous run of the same branch
 concurrency:
-    group: "pages"
+    group: pages-${{ github.ref }}
     cancel-in-progress: true
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
         if: github.repository == 'gouarin/splinart-cpp-replay'
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
 
             - uses: prefix-dev/setup-pixi@v0.11.3
               with:
