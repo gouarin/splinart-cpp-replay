@@ -37,4 +37,4 @@ jobs:
               shell: bash
               env:
                   ANACONDA_API_KEY: ${{ secrets.ANACONDA_TOKEN }}
-              run: pixi exec rattler-build upload anaconda --owner gouarin output/*/splinart-cpp-*.conda
+              run: pixi exec rattler-build upload anaconda --owner gouarin --channel replay output/*/splinart-cpp-*.conda
