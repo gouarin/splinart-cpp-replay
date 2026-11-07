@@ -6,9 +6,9 @@
 #include <algorithm>
 #include <cmath>
 
-#include <xtensor/xio.hpp>
-#include <xtensor/xtensor.hpp>
-#include <xtensor/xview.hpp>
+#include <xtensor/containers/xtensor.hpp>
+#include <xtensor/io/xio.hpp>
+#include <xtensor/views/xview.hpp>
 
 using namespace xt::placeholders;
 
@@ -59,7 +59,7 @@ namespace splinart
     ///
     /// @param y The output coordinates of the sample.
     ///
-    inline void splint(const xt::xtensor<double, 1>& xs,
+    inline void SplinT(const xt::xtensor<double, 1>& xs,
                        const xt::xtensor<double, 2>& ys,
                        const xt::xtensor<double, 2>& y2s,
                        xt::xtensor<double, 1>& x,
@@ -67,8 +67,8 @@ namespace splinart
     {
         for (std::size_t i = 0; i < x.size(); ++i)
         {
-            const auto* upper = std::upper_bound(xs.cbegin(), xs.cend(), x[i]);
-            auto khi          = upper != xs.end() ? std::distance(xs.begin(), upper) : xs.size();
+            auto upper = std::upper_bound(xs.cbegin(), xs.cend(), x[i]);
+            auto khi   = upper != xs.end() ? std::distance(xs.begin(), upper) : xs.size();
             if (khi >= xs.size())
             {
                 khi = xs.size() - 1;
